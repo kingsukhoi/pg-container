@@ -4,3 +4,4 @@ RUN echo "deb https://packagecloud.io/timescale/timescaledb/debian/ $(lsb_releas
 RUN wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | gpg --dearmor -o /etc/apt/trusted.gpg.d/timescaledb.gpg
 
 RUN apt update && apt install -y timescaledb-2-postgresql-16 postgresql-client-16
+RUN apt remove -y gnupg lsb-release wget
