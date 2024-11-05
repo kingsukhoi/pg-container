@@ -30,7 +30,7 @@ jobs:
       - name: Build Container
         id: build
         run: |
-          docker build --push ghcr.io/kingsukhoi/pg-container:${{ github.sha }} -t ghcr.io/kingsukhoi/pg-container:latest -t ghcr.io/kingsukhoi/pg-container:${{ steps.shortsha.outputs.sha_short }} .
+          docker build --push -t ghcr.io/kingsukhoi/pg-container:${{ github.sha }} -t ghcr.io/kingsukhoi/pg-container:latest -t ghcr.io/kingsukhoi/pg-container:${{ steps.shortsha.outputs.sha_short }} .
           docker pull ghcr.io/${{github.repository}}:${{ github.sha }} > /dev/null
           echo "image_sha=$(docker image inspect ghcr.io/${{github.repository}}:${{ github.sha }} | jq '.[0].RepoDigests[0]' | cut -d ':' -f 2 | cut -d '"' -f 1)" >> $GITHUB_OUTPUT
       - name: test image sha
